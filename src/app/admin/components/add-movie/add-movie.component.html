@@ -1,0 +1,54 @@
+
+                <div class="mb-4">
+                    <mat-accordion class="example-headers-align" multi>
+                        <mat-expansion-panel>
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <button mat-raised-button color="warn">Add Movie</button>
+                            </mat-panel-title>
+
+                            <mat-panel-description style="color: red;" *ngIf="!isError; else notvalid">
+                                Click Here To Enter The Movie Details
+                            </mat-panel-description>
+                                
+                           
+                            <ng-template #notvalid>
+                                <mat-panel-description style="color: red;">
+                                    {{errorMessage}}
+                                </mat-panel-description>
+                            </ng-template>
+
+
+                          </mat-expansion-panel-header>
+                          <div class="example-form">
+                            <form  #myForm ="ngForm" (ngSubmit)="addMovieDetails()">
+                                    <mat-form-field class="example-full-width mb-1">
+                                        <mat-label>Movie Name</mat-label>
+                                        <input matInput placeholder="Ex. Titanic" [(ngModel)]="movieDTO.movieName" required [formControl]="movieName">
+                                        <mat-error *ngIf="movieName.invalid">movie name is required</mat-error>
+                                    </mat-form-field>
+                        
+                                    <mat-form-field class="example-full-width mb-1">
+                                        <mat-label>Theater Name</mat-label>
+                                        <input matInput placeholder="Ex. Inox" name="theaterName" [(ngModel)]="movieDTO.theaterName" required [formControl]="theaterName">
+                                        <mat-error *ngIf="theaterName.invalid">theater name is required</mat-error>
+                                    </mat-form-field>
+                    
+                                    <mat-form-field class="example-full-width mb-1">
+                                        <mat-label>Total Seats</mat-label>
+                                        <input type="number" matInput name="totalSeats" [(ngModel)]="movieDTO.totalSeats" required required [formControl]="totalSeats">
+                                        <mat-error *ngIf="totalSeats.invalid">total seats are required</mat-error>
+                                    </mat-form-field>
+                    
+                                <div class="row justify-content-center">
+                                    <button mat-raised-button color="accent" [disabled]="movieName.invalid || theaterName.invalid || totalSeats.invalid">submit</button>
+                                </div>
+                            </form>
+                        </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+
+
+
+  

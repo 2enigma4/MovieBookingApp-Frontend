@@ -1,0 +1,57 @@
+<app-header></app-header>
+<section style="background-color: #eee;">
+    <div class="container">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-12 col-xl-11 mt-4 mb-5">
+          <div class="card text-black" style="border-radius: 25px;">
+            <div class="card-body p-md-5"> 
+              <app-add-movie></app-add-movie>  
+              <div class="alert alert-primary text-center" role="alert">
+                Movie Details - Click on Movie Code to See Tickets Details
+              </div>
+              <div class="row justify-content-center" *ngIf = "! isError; else elseBlock">
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    <table class="table table-hover">
+                        <thead class="head-fixed" style="background-color: #512DA8; color: white">
+                            <tr>
+                              <th scope="col">View Tickets</th>
+                              <th scope="col">Movie Name</th>
+                              <th scope="col">Theater Name</th>
+                              <th scope="col">Total Seats</th>
+                              <th scope="col">Booked Seats</th>
+                              <th scope="col">Available Seats</th>
+                              <th scope="col">Status</th>
+                              <th scope="col">Delete</th>
+                            </tr>
+                          </thead>
+                          <tbody *ngFor="let m of movies">
+                            <tr >
+                              <td><a [routerLink]='["/admin/view-tickets", m.movieId]'>ID-{{m.movieId}}</a></td>
+                              <td>{{m.movieName | titlecase}}</td>
+                              <td>{{m.theaterName | titlecase}}</td>
+                              <td>{{m.totalSeats}}</td>
+                              <td>{{m.totalBookedSeats}}</td>
+                              <td>{{m.totalAvailableSeats}}</td>
+                              <td [ngStyle]="{'color':m.movieStatus === 'BOOK_ASAP' ? 'green' : 'grey' }">{{m.movieStatus}}</td>
+                              <td>
+                                <button mat-raised-button color="warn" (click)= "deleteMovie(m.movieId)">Delete</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                    </table>
+                </div>
+              </div>
+              <ng-template #elseBlock>
+                <div class="alert alert-warning text-center" role="alert">
+                  {{errorMessage}}
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+<app-footer></app-footer>
+
+     

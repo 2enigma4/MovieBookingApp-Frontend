@@ -1,0 +1,15 @@
+.my-custom-scrollbar {
+    position: relative;
+    height: 500px;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+.head-fixed{ 
+    position: sticky; 
+    top: 0; 
+    z-index: 1; 
+}

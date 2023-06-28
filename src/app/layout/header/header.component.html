@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <img mat-card-avatar src="assets/images/movies-icon.jpg" style="width: 40px; height: 40px;">
+  <span class="m-2">Movie Booking App</span>
+  <span class="example-spacer"></span>
+
+  <a *ngIf="isLoggedIn() && userService.roleMatch(['ROLE_ADMIN'])" mat-icon-button class="example-icon" routerLink="/admin/view-movies" aria-label="Example icon-button with share icon">
+    <mat-icon>home</mat-icon>
+  </a>
+
+  <a *ngIf="isLoggedIn() && userService.roleMatch(['ROLE_USER'])" mat-icon-button class="example-icon" routerLink="/user/view-movies" aria-label="Example icon-button with share icon">
+    <mat-icon>home</mat-icon>
+  </a>
+
+  <button *ngIf="!isLoggedIn()" mat-button routerLink="/login-signup">LogIn</button>
+  <button *ngIf="isLoggedIn()" mat-button (click)="logout()">Logout</button>
+</mat-toolbar>

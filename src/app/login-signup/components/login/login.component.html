@@ -1,0 +1,52 @@
+<section class="vh-100 body">
+  <app-header></app-header>
+    <div class="container-fluid h-custom">  
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img src= "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+            class="img-fluid" alt="Sample image">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1"> 
+          <form (ngSubmit)="login(loginForm)" #loginForm ="ngForm">
+            <div  class="form-outline mb-4">
+                <p class="text-center h1 fw-bold mb-2 mx-1 mx-md-4">Sign In</p>
+            </div> 
+            
+            <!-- Email input -->
+            <div class="form-outline mb-3 p-1" >
+              <mat-form-field style="width:30vw;">
+                <mat-label>Enter your email</mat-label>
+                <input matInput placeholder="pat@example.com" [formControl]="email" required>
+                <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-1 p-1" >
+              <mat-form-field style="width:30vw;">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" required [formControl]="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
+              </mat-form-field>
+            </div>
+            
+
+            <div>
+              <a routerLink="/forgot-password" routerLinkActive="active">Forgot password?</a>
+            </div>
+  
+            <div class="text-center text-lg-start mt-4 pt-2">
+              <button type="submit" style="width:15vw" mat-raised-button color="primary" [disabled]="email.invalid || password.invalid">Login</button>
+              <p class="fw-bold mt-2 pt-1 mb-0">Don't have an account? <a routerLink="/register"
+                  class="link-danger">Register</a></p>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+<app-footer></app-footer>
+</section>

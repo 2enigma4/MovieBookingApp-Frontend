@@ -1,0 +1,43 @@
+<app-header></app-header>
+<section class="h-100" style="background-color: #eee;">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 col-xl-11 mt-4 mb-5">
+                <div class="card p-4" style="border-radius: 25px;">
+                    <ng-template [ngIf] ="isError">
+                        <div class="alert alert-warning text-center" role="alert">
+                            {{errorMessage}}
+                        </div>
+                    </ng-template>
+                    <div>
+                        <mat-card style="text-align: center;">
+                            <div class="card-header mb-4" style="background-color: #512DA8; color: white;">
+                                Booking
+                            </div>
+                            <img mat-card-image src="assets/images/movieCardImage.png" style="width: 30%; height: 50%;">
+                            <div>
+                                <p class="h2" style="font-size: 2.5vw;">Movie - {{movie.movieName | titlecase}}</p>
+                                <p class=" h4 text-muted" style="font-size: 1.5vw;">Theater - {{movie.theaterName | titlecase}}</p>
+                            </div>
+                            <mat-card-content class="m-0">
+                                <div class="example-form">
+                                    <form>
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Enter Number of Tickets</mat-label>
+                                            <input type="number" min="1" matInput name="numberOfTickets" [(ngModel)]="ticketDto.numberOfTickets" required [formControl]="numberOfTickets">
+                                            <mat-error *ngIf="numberOfTickets.invalid">Number of tickets required greater than 0</mat-error>
+                                        </mat-form-field>
+                                    </form>
+                                </div>
+                            </mat-card-content>
+                            <mat-card-actions class="m-0">
+                                <button mat-raised-button color="primary" (click)="bookTickets()" [disabled]="numberOfTickets.invalid">Book Tickets</button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>    
+<app-footer></app-footer>
